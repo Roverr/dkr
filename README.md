@@ -1,4 +1,4 @@
-# <img src="./dkr.png"/>
+# <img src="./dkr.svg"/>
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/Roverr/dkr)](https://goreportcard.com/report/github.com/Roverr/dkr)
  [![Maintainability](https://api.codeclimate.com/v1/badges/202152e83296250ab527/maintainability)](https://codeclimate.com/github/Roverr/rtsp-stream/maintainability)

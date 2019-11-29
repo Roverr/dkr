@@ -2,123 +2,55 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"log"
 	"os"
-	"os/exec"
 
 	docker "docker.io/go-docker"
 	"docker.io/go-docker/api/types"
-	"github.com/manifoldco/promptui"
+	"github.com/Roverr/dkr/core"
+	"github.com/natefinch/lumberjack"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
 	argsWithoutProg := os.Args[1:]
-	for _, arg := range argsWithoutProg {
-		fmt.Println(arg)
-	}
+	logger := logrus.New()
+	logger.SetOutput(&lumberjack.Logger{
+		Filename:   "/var/log/dkr/out.log",
+		MaxSize:    60,
+		MaxBackups: 1,
+		MaxAge:     20,
+		Compress:   true,
+	})
 	cli, err := docker.NewEnvClient()
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
 	containers, err := cli.ContainerList(context.Background(), types.ContainerListOptions{})
 	if err != nil {
-		log.Fatal(err)
+		logger.Fatal(err)
 	}
+	if len(containers) == 0 {
+		logger.Info("No containers running!")
+		return
+	}
+	ui := core.NewUI(logger)
+	manager := core.NewManager(logger)
 	if len(os.Args) == 1 {
-		targetContainer := getUserToChooseContainer(containers)
-
-		prompt := promptui.Select{
-			Label: "Select Commnad",
-			Items: []string{"exec", "logs", "stop"},
-		}
-
-		_, result, err := prompt.Run()
-		if err != nil {
-			fmt.Printf("Prompt failed %v\n", err)
-			return
-		}
-		runCommand(result, targetContainer.ID)
+		targetContainer := ui.GetChooseContainer(containers)
+		command := ui.GetCommandSelect()
+		manager.RunCmd(command, targetContainer.ID)
 	}
 	if len(os.Args) == 2 {
 		switch argsWithoutProg[0] {
 		case "exec":
-			targetContainer := getUserToChooseContainer(containers)
-			runCommand("exec", targetContainer.ID)
+			targetContainer := ui.GetChooseContainer(containers)
+			manager.RunCmd("exec", targetContainer.ID)
 		case "logs":
-			targetContainer := getUserToChooseContainer(containers)
-			runCommand("logs", targetContainer.ID)
+			targetContainer := ui.GetChooseContainer(containers)
+			manager.RunCmd("logs", targetContainer.ID)
 		case "stop":
-			targetContainer := getUserToChooseContainer(containers)
-			runCommand("stop", targetContainer.ID)
-		}
-	}
-}
-
-func getUserToChooseContainer(containers []types.Container) *types.Container {
-	containerMap := map[string]*types.Container{}
-	items := []string{}
-	for _, container := range containers {
-		item := fmt.Sprintf(
-			"%s  %s  %s  %s",
-			container.ID[:12],
-			container.Image,
-			container.Status,
-			container.State,
-		)
-		containerMap[item] = &container
-		items = append(items, item)
-	}
-	prompt := promptui.Select{
-		Label: "Select Container",
-		Items: items,
-	}
-
-	_, result, err := prompt.Run()
-	if err != nil {
-		fmt.Printf("Prompt failed %v\n", err)
-		return nil
-	}
-	return containerMap[result]
-}
-
-func commandForOS(commands ...string) *exec.Cmd {
-	cmd := exec.Command(commands[0], commands[1:]...)
-	cmd.Stderr = os.Stderr
-	cmd.Stdin = os.Stdin
-	cmd.Stdout = os.Stdout
-	return cmd
-}
-
-func runCommand(command, containerID string) {
-	switch command {
-	case "exec":
-		options := []string{
-			"/bin/bash",
-			"/bin/zsh",
-			"/bin/sh",
-		}
-		for _, bin := range options {
-			err := commandForOS("docker", "exec", "-it", containerID, bin).Run()
-			if err == nil {
-				break
-			}
-		}
-	case "logs":
-		cmd := exec.Command("docker", "logs", containerID)
-		cmd.Stderr = os.Stderr
-		cmd.Stdin = os.Stdin
-		cmd.Stdout = os.Stdout
-		if err := cmd.Run(); err != nil {
-			log.Fatal(err)
-		}
-	case "stop":
-		cmd := exec.Command("docker", "stop", containerID)
-		cmd.Stderr = os.Stderr
-		cmd.Stdin = os.Stdin
-		cmd.Stdout = os.Stdout
-		if err := cmd.Run(); err != nil {
-			log.Fatal(err)
+			targetContainer := ui.GetChooseContainer(containers)
+			manager.RunCmd("stop", targetContainer.ID)
 		}
 	}
 }
