@@ -56,5 +56,7 @@ func (m *Manager) RunCmd(command, containerID string) {
 		if err := cmd.Run(); err != nil {
 			m.logger.Fatal(err)
 		}
+	case "exit":
+		os.Exit(0)
 	}
 }

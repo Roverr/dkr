@@ -23,6 +23,19 @@ type displayedContainer struct {
 	State         string
 }
 
+// GetChooseMainOption provides select for the main entry point
+func (ui *UI) GetChooseMainOption() string {
+	prompt := promptui.Select{
+		Label: "Select command",
+		Items: []string{"containers", "exit"},
+	}
+	_, result, err := prompt.Run()
+	if err != nil {
+		ui.logger.Errorf("Prompt failed %v", err)
+	}
+	return result
+}
+
 // GetChooseContainer prompts a new select with the containers
 func (ui *UI) GetChooseContainer(containers []types.Container) *types.Container {
 	items := []displayedContainer{}
