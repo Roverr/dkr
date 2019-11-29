@@ -8,27 +8,29 @@
  
 Light CLI application to make it easier for developers to interact with docker containers.
 
-Provides an interactive interface over couple of docker commands so it can be easily utilised while working with docker containers a lot and you prefer something simple and light.
+It can be utilisied while working regularly with containers as a developer. Provides a nice CLI user interface to do basics.
 
 ## Table of contents
 * [How to use](#how-does-it-work)
 * [Install](#install)
     * [Linux](#linux)
     * [OSx](#osx)
+* [Improvements](#improvements)
 * [Credits](#credits)
 
 ## How to use
 
-dkr is a really simple CLI application to help you with your everyday tasks around docker container. It is written in Go to ensure proper distribution for the main developer platforms.
+dkr is a really simple CLI application to help you with your everyday tasks around docker containers.<br/>
+It is written in Go to ensure proper distribution for the main developer platforms.
 
 <p align="center">
     <img src="images/main.gif" width="100%"/>
 </p>
 
 dkr implements 3 commands right now:
-* exec - For times when you have to enter the container and manually check things
-* logs - When you want to see the logs of the container
-* stop - To stop the container
+* **exec** - For times when you have to enter the container and manually check things
+* **logs** - When you want to see the logs of the container
+* **stop** - To stop the container
 
 The reason for having this 3 is that in my experience most of the time when I use `docker ps` I want to do one of these commands. As a common user I think an interactive version is better.
 
@@ -39,6 +41,28 @@ You can use it in 2 ways:
 <p align="center">
     <img src="images/commands.gif" width="100%"/>
 </p>
+
+## Install
+
+**Docker has to be installed beforehand** 
+
+
+* Manual installation
+    * clone the repository under `github.com/Roverr/dkr`
+    * `dep ensure` (install dep before)
+    * `go build .` (install go before)
+    * Move the binary into your path
+* Choose a binary packed under [the latest release](https://github.com/Roverr/dkr/releases)
+* Use the following scripts below
+
+### Linux
+
+### OSx
+
+## Improvements
+
+Have a use case similiar to what this application is made for?<br/>
+[Open an issue](https://github.com/Roverr/dkr/issues/new) describing it!
 
 ## Credits
 
