@@ -28,7 +28,9 @@ It can be utilisied while working regularly with containers as a developer. Prov
 dkr is a really simple CLI application to help you with your everyday tasks around docker containers.<br/>
 It is written in Go to ensure proper distribution for the main developer platforms.
 
-On select screens you can use your arrow keys and enter to navigate. This is also stated everytime you encounter a select situation. 
+It does not try to be an all-around solution for providing CLI interface over docker functions. The reason for this is that there are a lot of docker commands that do not need any simplification because they are not used regularly or just plain simple to use. Consider this application as a shortcut for doing something that you can do anyway but takes longer time. In the long run the plan is to eliminate use cases that are pretty similiar to the current functionality.
+
+On select screens you can use your arrow keys and enter to navigate however this is also stated everytime you encounter a select situation.
 
 <p align="center">
     <img src="images/main.gif" width="100%"/>
@@ -41,9 +43,11 @@ dkr implements 3 commands right now:
 
 The reason for having this 3 is that in my experience most of the time when I use `docker ps` I want to do one of these commands. As a common user I think an interactive version is better.
 
-You can use it in 2 ways:
-* You can simply type `dkr` - This will lead you to the containers where you will be selecting what to do
-* You can also type the commands mentioned above like `dkr logs` - This way you will only be asked to choose a container
+**Two potential way to use the application:**
+* `dkr`
+    * This will lead you to the list of containers where you can select the container and action
+* `dkr logs` / `dkr exec` / `dkr stop`
+    * Takes you to the list of containers where you can choose which one should be the target of the given action command
 
 <p align="center">
     <img src="images/commands.gif" width="100%"/>
