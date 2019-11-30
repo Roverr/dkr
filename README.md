@@ -11,8 +11,9 @@ Light CLI application to make it easier for developers to interact with docker c
 It can be utilisied while working regularly with containers as a developer. Provides a nice CLI user interface to do basics.
 
 <p align="center">
-    <img src="images/main.gif" width="100%"/>
+    <img src="images/summary.gif" width="100%"/>
 </p>
+
 
 ## Table of contents
 * [How to use](#how-does-it-work)
@@ -26,6 +27,12 @@ It can be utilisied while working regularly with containers as a developer. Prov
 
 dkr is a really simple CLI application to help you with your everyday tasks around docker containers.<br/>
 It is written in Go to ensure proper distribution for the main developer platforms.
+
+On select screens you can use your arrow keys and enter to navigate. This is also stated everytime you encounter a select situation. 
+
+<p align="center">
+    <img src="images/main.gif" width="100%"/>
+</p>
 
 dkr implements 3 commands right now:
 * **exec** - For times when you have to enter the container and manually check things
@@ -56,6 +63,9 @@ You can use it in 2 ways:
 * Use the following scripts below
 
 ### Linux
+
+```s
+```
 
 ### OSx
 

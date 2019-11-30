@@ -40,6 +40,8 @@ func (m *Manager) RunCmd(command, containerID string) {
 				break
 			}
 		}
+	case "log":
+		fallthrough
 	case "logs":
 		cmd := exec.Command("docker", "logs", containerID)
 		cmd.Stderr = os.Stderr
