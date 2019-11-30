@@ -1,10 +1,10 @@
 # <img height=150 src="./images/dkr.png"/>
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/Roverr/dkr)](https://goreportcard.com/report/github.com/Roverr/dkr)
- [![Maintainability](https://api.codeclimate.com/v1/badges/202152e83296250ab527/maintainability)](https://codeclimate.com/github/Roverr/rtsp-stream/maintainability)
+ [![Maintainability](https://api.codeclimate.com/v1/badges/05c591bda84a3aad6109/maintainability)](https://codeclimate.com/github/Roverr/dkr/maintainability)
  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
- ![GitHub last commit](https://img.shields.io/github/last-commit/Roverr/dkr.svg)
- ![GitHub release](https://img.shields.io/github/release/Roverr/dkr.svg)
+ ![GitHub last commit](https://img.shields.io/github/last-commit/Roverr/dkr)
+ ![GitHub release](https://img.shields.io/github/release/Roverr/dkr)
  
 Light CLI application to make it easier for developers to interact with docker containers.
 
