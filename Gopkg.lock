@@ -140,14 +140,6 @@
   version = "v0.0.10"
 
 [[projects]]
-  digest = "1:c805e517269b0ba4c21ded5836019ed7d16953d4026cb7d00041d039c7906be9"
-  name = "github.com/natefinch/lumberjack"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "a96e63847dc3c67d17befa69c303767e2f84e54f"
-  version = "v2.1"
-
-[[projects]]
   digest = "1:ee4d4af67d93cc7644157882329023ce9a7bcfce956a079069a9405521c7cc8d"
   name = "github.com/opencontainers/go-digest"
   packages = ["."]
@@ -213,7 +205,6 @@
     "docker.io/go-docker",
     "docker.io/go-docker/api/types",
     "github.com/manifoldco/promptui",
-    "github.com/natefinch/lumberjack",
     "github.com/sirupsen/logrus",
   ]
   solver-name = "gps-cdcl"

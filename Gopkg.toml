@@ -40,7 +40,3 @@
 [[constraint]]
   name = "github.com/sirupsen/logrus"
   version = "1.4.2"
-
-[[constraint]]
-  name = "github.com/natefinch/lumberjack"
-  version = "2.1.0"
