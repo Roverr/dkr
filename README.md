@@ -70,7 +70,7 @@ The reason for having this 3 is that in my experience most of the time when I us
 
 ```s
 mkdir -p /tmp/dkr && \
-curl -o /tmp/dkr/dkr.tar.gz -sSL https://github.com/Roverr/dkr/releases/download/v1.0.0/dkr.linux.amd64.tar.gz && \
+curl -o /tmp/dkr/dkr.tar.gz -sSL https://github.com/Roverr/dkr/releases/download/v1.0.1/dkr.linux.amd64.tar.gz && \
 tar -xzvf /tmp/dkr/dkr.tar.gz -C /tmp/dkr && \
 mv /tmp/dkr/dist/linux/dkr /usr/local/bin/dkr && \
 chmod +x /usr/local/bin/dkr && \
