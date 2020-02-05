@@ -1,6 +1,8 @@
 package core
 
 import (
+	"strings"
+
 	"docker.io/go-docker/api/types"
 	"github.com/manifoldco/promptui"
 	"github.com/sirupsen/logrus"
@@ -31,7 +33,9 @@ func (ui *UI) GetChooseMainOption() string {
 	}
 	_, result, err := prompt.Run()
 	if err != nil {
-		ui.logger.Errorf("Prompt failed %v", err)
+		if !strings.Contains(err.Error(), "^") {
+			ui.logger.Errorf("Prompt failed %v", err)
+		}
 	}
 	return result
 }
@@ -67,7 +71,9 @@ func (ui *UI) GetChooseContainer(containers []types.Container) *types.Container 
 
 	index, _, err := prompt.Run()
 	if err != nil {
-		ui.logger.Errorf("Prompt failed %v", err)
+		if !strings.Contains(err.Error(), "^") {
+			ui.logger.Errorf("Prompt failed %v", err)
+		}
 		return nil
 	}
 	return &containers[index]
@@ -82,7 +88,9 @@ func (ui *UI) GetCommandSelect() string {
 
 	_, result, err := prompt.Run()
 	if err != nil {
-		ui.logger.Errorf("Select containers dialog failed | %s", err)
+		if !strings.Contains(err.Error(), "^") {
+			ui.logger.Errorf("Select containers dialog failed | %s", err)
+		}
 	}
 	return result
 }

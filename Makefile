@@ -13,7 +13,7 @@ osx: ## Builds OSx binary
 windows: ## Builds windows binary
 	GOOS=windows GOARCH=amd64 go build -o="dist/windows/sm.exe" && \
 	zip dist/dkr.windows.amd64.zip dist/windows/sm.exe
-binaries: 
+binaries: ## Builds all binaries
 	$(MAKE) linux && $(MAKE) osx && $(MAKE) windows
 .PHONY: help
 help:
